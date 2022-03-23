@@ -2,8 +2,11 @@ from test_framework import generic_test
 
 
 def swap_bits(x, i, j):
-    # TODO - you fill in here.
-    return 0
+    # The time complexity is O(1) because it is independent of the word size
+    if (x >> i) & 1 != (x >> j) & 1:
+        mask = (1 << i) | (1 << j)
+        x ^= mask
+    return x
 
 
 if __name__ == '__main__':
