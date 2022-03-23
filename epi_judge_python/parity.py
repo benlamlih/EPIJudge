@@ -2,11 +2,13 @@ from test_framework import generic_test
 
 
 def parity(x: int) -> int:
+    # The complexity is O(k) with k is the number of 1s in x
+    # Because by doing x &= x - 1 we drop the lowest set of bit x, so we drop the last 1
     result = 0
-    while x > 0:
-        result = result + 1 if x & 1 == 1 else result + 0
-        x >>= 1
-    return 1 if result % 2 != 0 else 0
+    while x:
+        result ^= 1
+        x &= x - 1
+    return result
 
 
 if __name__ == '__main__':
